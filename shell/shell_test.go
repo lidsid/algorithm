@@ -1,4 +1,4 @@
-package insertion
+package shell
 
 import (
 	"testing"
@@ -10,6 +10,7 @@ func TestSort(t *testing.T) {
 	Sort(item)
 	t.Log(item)
 }
+
 /*
 go test -test.bench ^BenchmarkSort$
 go test -test.bench ^BenchmarkSort$ -test.benchmem -test.cpuprofile cpu.profile -test.memprofile mem.profile -test.cpu 1,2,4
@@ -17,7 +18,7 @@ go test -test.bench ^BenchmarkSort$ -test.benchmem -test.cpuprofile cpu.profile 
 /*
 BenchmarkSort-4         2000000000               0.00 ns/op
 PASS
-ok      algorithm/insertion     0.098s
+ok      algorithm/shell 0.034s
 */
 func BenchmarkSort(b *testing.B) {
 	b.StopTimer()

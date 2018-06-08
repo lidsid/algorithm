@@ -21,6 +21,11 @@ func TestSortUsingSortPackage(t *testing.T) {
 go test -bench ^BenchmarkSort$
 go test -test.bench=^BenchmarkSort$ -test.benchmem -test.cpuprofile cpu.profile -test.memprofile mem.profile -test.cpu 1,2,4
 */
+/*
+BenchmarkSort-4           500000              3259 ns/op
+PASS
+ok      algorithm/bubble        2.747s
+*/
 func BenchmarkSort(b *testing.B) {
 	b.StopTimer()
 	item := algorithm.Generate(0,10000000,5000)
