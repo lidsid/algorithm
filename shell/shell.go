@@ -21,5 +21,3 @@ func Sort(items []int) {
 func swap(slice []int, i int, j int) {
 	slice[i], slice[j] = slice[j], slice[i]
 }
-
-

@@ -1,18 +1,18 @@
 package bubble
 
 import (
-	"testing"
 	"algorithm"
+	"testing"
 )
 
 func TestSort(t *testing.T) {
-	item := algorithm.Generate(0,100,10)
+	item := algorithm.Generate(0, 100, 10)
 	Sort(item)
 	t.Log(item)
 }
 
 func TestSortUsingSortPackage(t *testing.T) {
-	item := algorithm.Generate(0,100,10)
+	item := algorithm.Generate(0, 100, 10)
 	SortUsingSortPackage(array(item))
 	t.Log(item)
 }
@@ -28,18 +28,18 @@ ok      algorithm/bubble        2.747s
 */
 func BenchmarkSort(b *testing.B) {
 	b.StopTimer()
-	item := algorithm.Generate(0,10000000,5000)
+	item := algorithm.Generate(0, 10000000, 5000)
 	b.StartTimer()
-	for i:=0;i<b.N;i++  {
+	for i := 0; i < b.N; i++ {
 		Sort(item)
 	}
 }
 
 func BenchmarkSortUsingSortPackage(b *testing.B) {
 	b.StopTimer()
-	item := array(algorithm.Generate(0,10000000,5000))
+	item := array(algorithm.Generate(0, 10000000, 5000))
 	b.StartTimer()
-	for i:=0;i<b.N;i++ {
+	for i := 0; i < b.N; i++ {
 		SortUsingSortPackage(item)
 	}
 }

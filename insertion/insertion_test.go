@@ -1,15 +1,16 @@
 package insertion
 
 import (
-	"testing"
 	"algorithm"
+	"testing"
 )
 
 func TestSort(t *testing.T) {
-	item := algorithm.Generate(0,100,10)
+	item := algorithm.Generate(0, 100, 10)
 	Sort(item)
 	t.Log(item)
 }
+
 /*
 go test -test.bench ^BenchmarkSort$
 go test -test.bench ^BenchmarkSort$ -test.benchmem -test.cpuprofile cpu.profile -test.memprofile mem.profile -test.cpu 1,2,4
@@ -21,6 +22,9 @@ ok      algorithm/insertion     0.098s
 */
 func BenchmarkSort(b *testing.B) {
 	b.StopTimer()
-	item := algorithm.Generate(0,10000000,5000)
-	Sort(item)
+	item := algorithm.Generate(0, 10000000, 5000)
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		Sort(item)
+	}
 }

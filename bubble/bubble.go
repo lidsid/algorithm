@@ -13,17 +13,17 @@ package bubble
 import "sort"
 
 /*不实用内部包*/
-func Sort(item []int)  {
+func Sort(item []int) {
 	var (
-		n = len(item)
+		n    = len(item)
 		swap = true
 	)
 
 	for swap {
 		swap = false
-		for i:=0;i<n-1;i++ {
+		for i := 0; i < n-1; i++ {
 			if item[i] > item[i+1] {
-				item[i],item[i+1] = item[i+1],item[i]
+				item[i], item[i+1] = item[i+1], item[i]
 				swap = true
 			}
 		}
@@ -32,16 +32,16 @@ func Sort(item []int)  {
 }
 
 /*使用内部排序包*/
-func SortUsingSortPackage(sorter sort.Interface)  {
+func SortUsingSortPackage(sorter sort.Interface) {
 	var (
-		n = sorter.Len()
+		n    = sorter.Len()
 		swap = true
 	)
 	for swap {
 		swap = false
-		for i:=0;i<n-1;i++ {
-			if sorter.Less(i+1,i){
-				sorter.Swap(i+1,i)
+		for i := 0; i < n-1; i++ {
+			if sorter.Less(i+1, i) {
+				sorter.Swap(i+1, i)
 				swap = true
 			}
 		}
@@ -55,10 +55,10 @@ func (a array) Len() int {
 	return len(a)
 }
 
-func (a array) Less(i,j int) bool {
+func (a array) Less(i, j int) bool {
 	return a[i] < a[j]
 }
 
-func (a array) Swap(i,j int)  {
-	a[i],a[j] = a[j],a[i]
+func (a array) Swap(i, j int) {
+	a[i], a[j] = a[j], a[i]
 }

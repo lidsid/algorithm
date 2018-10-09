@@ -21,70 +21,6 @@ N<sup>3</sup>/6-N<sup>2</sup>/2+N/3 的增长数量级为 O(N<sup>3</sup>)。增
 
 使用成本模型来评估算法，例如数组的访问次数就是一种成本模型。
 
-## ThreeSum
-
-ThreeSum 用于统计一个数组中和为 0 的三元组数量。
-
-```java
-public class ThreeSum {
-    public static int count(int[] nums) {
-        int N = nums.length;
-        int cnt = 0;
-        for (int i = 0; i < N; i++)
-            for (int j = i + 1; j < N; j++)
-                for (int k = j + 1; k < N; k++)
-                    if (nums[i] + nums[j] + nums[k] == 0)
-                        cnt++;
-
-        return cnt;
-    }
-}
-```
-
-该算法的内循环为 `if (nums[i] + nums[j] + nums[k] == 0)` 语句，总共执行的次数为 N(N-1)(N-2) = N<sup>3</sup>/6-N<sup>2</sup>/2+N/3，因此它的近似执行次数为 \~N<sup>3</sup>/6，增长数量级为 O(N<sup>3</sup>)。
-
-<font size=4> **改进** </font></br>
-
-通过将数组先排序，对两个元素求和，并用二分查找方法查找是否存在该和的相反数，如果存在，就说明存在三元组的和为 0。
-
-该方法可以将 ThreeSum 算法增长数量级降低为 O(N<sup>2</sup>logN)。
-
-```java
-public class ThreeSumFast {
-    public static int count(int[] nums) {
-        Arrays.sort(nums);
-        int N = nums.length;
-        int cnt = 0;
-        for (int i = 0; i < N; i++)
-            for (int j = i + 1; j < N; j++) {
-                int target = -nums[i] - nums[j];
-                int index = binarySearch(nums, target);
-                // 应该注意这里的下标必须大于 j，否则会重复统计。
-                if (index <= j)
-                    continue;
-                while (index < N && nums[index++] == target)
-                    cnt++;
-            }
-
-        return cnt;
-    }
-
-    private static int binarySearch(int[] nums, int target) {
-        int l = 0, h = nums.length - 1;
-        while (l <= h) {
-            int m = l + (h - l) / 2;
-            if (target == nums[m])
-                return m;
-            else if (target > nums[m])
-                l = m + 1;
-            else
-                h = m - 1;
-        }
-        return -1;
-    }
-}
-```
-
 ## 倍率实验
 
 如果 T(N) \~ aN<sup>b</sup>logN，那么 T(2N)/T(N) \~ 2<sup>b</sup>。
@@ -102,26 +38,6 @@ public class ThreeSumFast {
 
 可以看到，T(2N)/T(N) \~ 2<sup>3</sup>，因此可以确定 T(N) \~ aN<sup>3</sup>logN。
 
-```java
-public class RatioTest {
-    public static void main(String[] args) {
-        int N = 500;
-        int K = 7;
-        long preTime = -1;
-        while (K-- > 0) {
-            int[] nums = new int[N];
-            long startTime = System.currentTimeMillis();
-            int cnt = ThreeSum.count(nums);
-            long endTime = System.currentTimeMillis();
-            long time = endTime - startTime;
-            double ratio = preTime == -1 ? 0 : (double) time / preTime;
-            System.out.println(N + "  " + time + "  " + ratio);
-            preTime = time;
-            N *= 2;
-        }
-    }
-}
-```
 
 ## 注意事项
 

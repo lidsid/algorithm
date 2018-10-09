@@ -1,12 +1,12 @@
 package selection
 
 import (
-	"testing"
 	"algorithm"
+	"testing"
 )
 
 func TestSort(t *testing.T) {
-	item := algorithm.Generate(0,100,10)
+	item := algorithm.Generate(0, 100, 10)
 	Sort(item)
 	t.Log(item)
 }
@@ -22,6 +22,6 @@ ok      algorithm/selection     0.103s
 */
 func BenchmarkSort(b *testing.B) {
 	b.StopTimer()
-	item := algorithm.Generate(0,10000000,5000)
+	item := algorithm.Generate(0, 10000000, 5000)
 	Sort(item)
 }

@@ -39,3 +39,25 @@ C<sub>max</sub> = 3*n*(n-1)/2 = O(n<sup>2</sup>)
 所以，如果两个元素相等，我想你是不会再无聊地把他们俩交换一下的；
 如果两个相等的元素没有相邻，那么即使通过前面的两两交换把两个相邻起来，这时候也不会交换，所以相同元素的前后顺序并没有改变，
 所以冒泡排序是一种稳定排序算法。
+
+````go
+package bubble
+
+func Sort(item []int)  {
+	var (
+		n = len(item)
+		swap = true
+	)
+
+	for swap {
+		swap = false
+		for i:=0;i<n-1;i++ {
+			if item[i] > item[i+1] {
+				item[i],item[i+1] = item[i+1],item[i]
+				swap = true
+			}
+		}
+		n--
+	}
+}
+````
